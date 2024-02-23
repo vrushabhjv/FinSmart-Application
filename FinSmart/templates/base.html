@@ -1,0 +1,45 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinSmart - {% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href={% static "base.css" %}>
+  <link rel="stylesheet" href={% static "home.css" %}>
+</head>
+<body>
+  <header>
+    <div class="logo">FinSmart</div>
+    <nav>
+      <ul>
+        <li {% if request.path == '' %} class="active" {% endif %}>
+            <a href="/">Home</a>
+          </li>
+          <li {% if request.path == 'transactions' %} class="active" {% endif %}>
+            <a href="/transactions">Transactions</a>
+          </li>
+          <li {% if request.path == '/goals/' %}class="active"{% endif %}>
+            <a href="/goals/">Goals</a>
+          </li>
+          <li {% if request.path == '/habits/' %}class="active"{% endif %}>
+            <a href="/habits/">Habits</a>
+          </li>
+          <li {% if request.path == '/profile/' %}class="active"{% endif %}>
+            <a href="/profile/">Profile</a>
+          </li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <a href="#" class="button login-btn">Login</a>
+      <a href="#" class="button signup-btn">Signup</a>
+      <a href="#" class="button logout-btn">Logout</a>
+    </div>
+  </header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

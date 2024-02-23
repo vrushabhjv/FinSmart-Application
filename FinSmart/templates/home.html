@@ -1,1 +1,37 @@
-<h1>This is home</h1>
+
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{% block title %}FinSmart - Home{% endblock %}
+
+{% block content %}
+<section class="overview">
+    <h2>Financial Overview</h2>
+    <div class="transaction-list">
+        <h3>Recent Transactions</h3>
+        <ul>
+            <!-- Placeholder for recent transactions -->
+            <li>Transaction 1</li>
+            <li>Transaction 2</li>
+            <li>Transaction 3</li>
+            <li>Transaction 4</li>
+        </ul>
+    </div>
+    <div class="goals">
+        <h3>Upcoming Goals</h3>
+        <!-- Placeholder for upcoming goals -->
+        <p>No upcoming goals</p>
+    </div>
+</section>
+<section class="quick-access">
+    <h2>Quick Access</h2>
+    <div class="quick-links">
+        <a href="#" class="button add-transaction-btn">Add Transaction</a>
+        <a href="#" class="button set-goals-btn">Set Goals</a>
+        <a href="#" class="button manage-habits-btn">Manage Habits</a>
+    </div>
+</section>
+{% endblock %}
+
