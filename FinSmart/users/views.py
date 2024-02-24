@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
+from django.urls import reverse
 
 # Create your views here.
 
@@ -47,6 +48,7 @@ def login(request):
             return redirect('home')
         else:
             messages.error(request, 'Invalid credentials')
+            print("Invalid credentials")
             return redirect('login')
     else:
         return render(request, 'login.html')

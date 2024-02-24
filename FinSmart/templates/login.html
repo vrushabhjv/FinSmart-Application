@@ -26,7 +26,7 @@
         <div class="logo">FinSmart</div>
     </header>
     <main>
-        <form class="login-form" method="post" action="login">
+        <form class="login-form" method="post" action="{% url 'login' %}">
             {% csrf_token %}
             {% for error in errors %}
                 <div class="alert alert-danger" role="alert">
@@ -44,6 +44,7 @@
             <input type="password" name="password" id="password" placeholder="Password" required>
             <button type="submit" id="login-btn">Login</button>
             <a href="#" class="forgot-password">Forgot Password?</a>
+            <a href={% url 'register' %} class="forgot-password">New User? Please Register</a>
             <div class="throbber"></div>
         </form>
     </main>

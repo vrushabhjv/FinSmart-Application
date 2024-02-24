@@ -33,9 +33,14 @@
       </ul>
     </nav>
     <div class="auth-buttons">
-      <a href="#" class="button login-btn">Login</a>
-      <a href="#" class="button signup-btn">Signup</a>
-      <a href="#" class="button logout-btn">Logout</a>
+      {% if user.is_authenticated %}
+      <a href="logout/" class="button logout-btn">Logout</a>
+      {% else %}
+      <!-- <a href="#" class="button signup-btn">Signup</a> -->
+      
+      <p>Welcome, {{ user.username }}</p>
+      <a href="login/" class="button login-btn">Login/SignUp</a>
+      {% endif %}
     </div>
   </header>
   <main>
