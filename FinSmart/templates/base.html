@@ -8,21 +8,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FinSmart - {% block title %}{% endblock %}</title>
   <!-- <link rel="stylesheet" href={% static "base.css" %}> -->
-  <link rel="stylesheet" href={% static "home.css" %}> 
+  <!-- <link rel="stylesheet" href={% static "home.css" %}>  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <style>
+    /* Custom CSS for fixed header */
+    header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000; /* Ensure header is on top of other content */
+    }
+    main {
+        padding-top: 70px; /* Adjust padding to prevent content from being overlapped by fixed header */
+    }
+    .container {
+            width: 85% !important; /* Set container width to 85% */
+        }
+</style>
 </head>
 <body>
+
   <header>
     {% include 'includes/navbar.html' %}
-
   </header>
-
+  
   {% include 'includes/messages.html' %}
   
   <main>
-    {% block content %}
-    {% endblock %}
+    <div class="container section 90%">
+      {% block content %}
+      {% endblock %}
+    </div>
   </main>
 </body>
 </html>
