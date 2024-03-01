@@ -1,0 +1,31 @@
+<nav>
+    <div class='nav-wrapper purple darken-3'>
+      <a href="#" class="brand-logo">FinSmart</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li {% if request.path == '' %} class="active" {% endif %}>
+          <a href="/">Home</a>
+        </li>
+        <li {% if request.path == 'transactions' %} class="active" {% endif %}>
+          <a href="/transactions">Transactions</a>
+        </li>
+        <li {% if request.path == '/goals/' %}class="active"{% endif %}>
+          <a href="/goals/">Goals</a>
+        </li>
+        <li {% if request.path == '/habits/' %}class="active"{% endif %}>
+          <a href="/habits/">Habits</a>
+        </li>
+        <li {% if request.path == '/profile/' %}class="active"{% endif %}>
+          <a href="/profile/">Profile</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li>
+          <a class="waves-effect waves-light btn" href="logout/">Logout</a>
+        </li>
+        {% else %}
+        <li>
+          <a class="waves-effect waves-light btn" href="login/">Login/SignUp</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>

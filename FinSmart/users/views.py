@@ -31,13 +31,14 @@ def register(request):
             else:
                 user = User.objects.create_user(username=username, email=email, password=password)
                 user.save()
-                messages.success(request, 'You have successfully registered')
+                messages.success(request, f'You have successfully registered: {user.username}')
                 return redirect('home')
     else:
         return render(request, 'register.html')
 
 def login(request):
     if request.method == 'POST':
+        
         username=request.POST['username']
         password=request.POST['password']
         
