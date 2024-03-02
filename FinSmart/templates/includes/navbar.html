@@ -1,11 +1,11 @@
-<nav>
+<nav class="">
     <div class='nav-wrapper purple darken-3'>
-      <a href="#" class="brand-logo">FinSmart</a>
+      <a href="#" class="brand-logo section">FinSmart</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li {% if request.path == '' %} class="active" {% endif %}>
+        <li {% if request.path == '/' %} class="active" {% endif %}>
           <a href="/">Home</a>
         </li>
-        <li {% if request.path == 'transactions' %} class="active" {% endif %}>
+        <li {% if request.path == '/transactions/' %} class="active" {% endif %}>
           <a href="/transactions">Transactions</a>
         </li>
         <li {% if request.path == '/goals/' %}class="active"{% endif %}>
