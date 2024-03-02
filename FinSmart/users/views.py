@@ -12,10 +12,13 @@ def home(request):
 def register(request):
     # print("Login")
     if request.method == 'POST':
+        fname=request.POST['fname']
+        lname=request.POST['lname']
         username=request.POST['username']
         email=request.POST['email']
         password=request.POST['password']
         confirm_password=request.POST['confirm_password']
+
         # confirm_password=password
         
         if password != confirm_password:
@@ -29,7 +32,7 @@ def register(request):
                 messages.error(request, 'Email already exists')
                 return redirect('register')
             else:
-                user = User.objects.create_user(username=username, email=email, password=password)
+                user = User.objects.create_user(username=username, email=email, password=password,first_name=fname,last_name=lname)
                 user.save()
                 messages.success(request, f'You have successfully registered: {user.username}')
                 return redirect('home')
@@ -46,6 +49,7 @@ def login(request):
         
         if user is not None:
             auth.login(request, user)
+            messages.success(request, f'You have successfully logged-in: {user.username}')
             return redirect('home')
         else:
             messages.error(request, 'Invalid credentials')
