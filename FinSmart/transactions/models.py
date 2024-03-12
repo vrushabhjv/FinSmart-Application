@@ -24,5 +24,5 @@ class Transaction(models.Model):
         verbose_name_plural = 'Transactions'
         
     def __str__(self):
-        return self.category.name + ' - ' + self.description
+        return self.user.username+ ' - ' +self.category.name + ' - ' + self.description
     

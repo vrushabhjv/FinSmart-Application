@@ -8,7 +8,7 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 def transaction_home(request):
-    transactions = Transaction.objects.all()
+    transactions = Transaction.objects.filter(user=request.user)
     
     # Retrieve categories from the database
     categories = TransactionCategory.objects.all()  # Assuming you have a Category model
@@ -95,7 +95,7 @@ def add_transaction(request):
         transaction = Transaction(date=date, description=description, amount=amount, category=category, type=type, user=user)
         transaction.save()
         messages.success(request, f'Transaction added successfully')
-        return redirect('transaction_list')
+        return redirect('transaction_home')
     else:
         print(request.user)
         categories = TransactionCategory.objects.all()  # Assuming you have a Category model
