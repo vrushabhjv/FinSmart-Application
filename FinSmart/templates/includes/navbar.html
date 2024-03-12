@@ -9,21 +9,21 @@
           <a href={% url 'transaction_home' %}>Transactions</a>
         </li>
         <li {% if request.path == '/goals/' %}class="active"{% endif %}>
-          <a href="/goals/">Goals</a>
+          <a href={% url "home" %}>Goals</a>
         </li>
         <li {% if request.path == '/habits/' %}class="active"{% endif %}>
-          <a href="/habits/">Habits</a>
+          <a href={% url "home" %}>Habits</a>
         </li>
         <li {% if request.path == '/profile/' %}class="active"{% endif %}>
-          <a href="/profile/">Profile</a>
+          <a href={% url "home" %}>Profile</a>
         </li>
         {% if user.is_authenticated %}
         <li>
-          <a class="waves-effect waves-light btn" href="logout/">Logout</a>
+          <a class="waves-effect waves-light btn" href={% url "logout" %}>Logout</a>
         </li>
         {% else %}
         <li>
-          <a class="waves-effect waves-light btn" href="login/">Login/SignUp</a>
+          <a class="waves-effect waves-light btn" href={% url "login" %}>Login/SignUp</a>
         </li>
         {% endif %}
       </ul>
