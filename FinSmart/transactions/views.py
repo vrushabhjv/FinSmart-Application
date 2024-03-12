@@ -28,6 +28,7 @@ def transaction_home(request):
     
     return render(request, 'transactions/transactions.html',context)
 
+'''
 def transaction_list(request):
     transactions = Transaction.objects.all()
 
@@ -49,6 +50,7 @@ def transaction_list(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'transactions/transactions.html', {'page_obj': page_obj}, context)
+'''
 
 def transaction_detail(request, transaction_id):
     transaction = Transaction.objects.get(id=transaction_id)
