@@ -62,5 +62,3 @@ def logout(request):
     auth.logout(request)
     return redirect('home')
 
-def transactions(request):
-    return render(request, 'transactions.html')

@@ -6,7 +6,7 @@
           <a href="/">Home</a>
         </li>
         <li {% if request.path == '/transactions/' %} class="active" {% endif %}>
-          <a href="/transactions">Transactions</a>
+          <a href={% url 'transaction_home' %}>Transactions</a>
         </li>
         <li {% if request.path == '/goals/' %}class="active"{% endif %}>
           <a href="/goals/">Goals</a>
