@@ -3,11 +3,24 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.urls import reverse
+from transactions.models import Transaction
 
 # Create your views here.
 
 def home(request):
-    return render(request, 'home.html')
+    if request.user.is_authenticated:
+        print("User is authenticated")
+        # Retrieve the latest 4 transactions for the current user
+        latest_transactions = Transaction.objects.filter(user=request.user).order_by('-date')[:4]
+        
+        # Now you have access to the latest 4 transactions related to the logged-in user
+        
+        context = {
+            'latest_transactions': latest_transactions,
+        }
+        return render(request, 'home.html',context)
+    else:
+        return render(request, 'home.html')
 
 def register(request):
     # print("Login")
