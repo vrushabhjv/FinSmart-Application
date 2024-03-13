@@ -115,4 +115,16 @@ def update_transaction(request, transaction_id):
 
 def delete_transaction(request, transaction_id):
     # Handle deletion of an existing transaction
-    pass
+    # Retrieve the transaction object
+    try:
+        transaction = Transaction.objects.get(id=transaction_id)
+    except Transaction.DoesNotExist:
+        # Handle the case where the transaction does not exist
+        messages.error(request, "Transaction does not exist.")
+        return redirect('transaction_list')  # Redirect to transaction list page or any other appropriate page
+
+    if request.method == 'POST':
+        # Delete the transaction
+        transaction.delete()
+        messages.success(request, "Transaction deleted successfully.")
+        return redirect('transaction_home')  # Redirect to transaction list page or any other appropriate page
