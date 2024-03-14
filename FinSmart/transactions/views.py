@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.urls import reverse
 from .models import Transaction, TransactionCategory
 from django.core.paginator import Paginator
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 def transaction_home(request):
@@ -52,9 +53,20 @@ def transaction_list(request):
     return render(request, 'transactions/transactions.html', {'page_obj': page_obj}, context)
 '''
 
-def transaction_detail(request, transaction_id):
-    transaction = Transaction.objects.get(id=transaction_id)
-    return render(request, 'transaction_detail.html', {'transaction': transaction})
+'''def transaction_detail(request, transaction_id):
+   transaction = Transaction.objects.get(id=transaction_id)
+    return render(request, 'transaction_detail.html', {'transaction': transaction})'''
+
+def view_transaction(request, transaction_id):
+    # Fetch the goal details from the database based on the goal_id
+    # Assuming you have a method to retrieve the goal details, replace the placeholders with your actual implementation
+    transaction = get_object_or_404(Transaction, pk=transaction_id)
+    
+    # Pass the goal details to the template
+    context = {'transaction': transaction}
+    
+    # Render the template
+    return render(request, 'transaction_detail.html', context)
 
     # Handle form submission to create a new transaction
 def add_transaction(request):
@@ -128,3 +140,4 @@ def delete_transaction(request, transaction_id):
         transaction.delete()
         messages.success(request, "Transaction deleted successfully.")
         return redirect('transaction_home')  # Redirect to transaction list page or any other appropriate page
+

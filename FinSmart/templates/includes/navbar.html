@@ -9,7 +9,7 @@
           <a href={% url 'transaction_home' %}>Transactions</a>
         </li>
         <li {% if request.path == '/goals/' %}class="active"{% endif %}>
-          <a href={% url "home" %}>Goals</a>
+          <a href='goal_home/'>Goals</a>
         </li>
         <li {% if request.path == '/habits/' %}class="active"{% endif %}>
           <a href={% url "home" %}>Habits</a>

@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{% static 'Transactions/add_transaction.css' %}">
 <div class="container">
     <div class="text">
-       Add Goals Form
+       Add Transaction form
     </div>
     <form method="post" action="{% url 'add_transaction' %}">
         {% csrf_token %}

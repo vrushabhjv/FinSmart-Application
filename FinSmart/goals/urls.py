@@ -1,0 +1,11 @@
+from django.urls import path
+from . import views
+
+app_name = 'goals'
+
+urlpatterns = [
+    path('goal_home/', views.goal_home, name='goal_home'),
+    path('add/', views.add_goal, name='add_goal'),
+    path('goals/<int:goal_id>/', views.view_goal, name='view_goal'),
+
+]

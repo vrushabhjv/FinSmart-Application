@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goal Details</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="{% static 'goal_detail.css' %}">
+</head>
+<body>
+    <!-- Dialog element -->
+    <dialog id="myDialog">
+        <!-- Dialog content -->
+        <p>All that you need to know about your goal.</p>
+        <p>Name: {{ goal.name }}</p>
+        <p>Id: {{ goal.id }}</p>
+        <p>Created On: {{ goal.created_at }}</p>
+        <p>Target Amount: {{ goal.target_amount }}</p>
+        <p>Recently updated: {{ goal.updated_at }}</p>
+        <p>Target Date: {{ goal.target_date }}</p>
+        <!-- Add more goal details as needed -->
+        <button id="closeDialogBtn">Close</button>
+    </dialog>
+
+    <!-- Script to handle dialog opening and closing -->
+    <script>
+        // Get references to elements
+        const myDialog = document.getElementById('myDialog');
+        const closeDialogBtn = document.getElementById('closeDialogBtn');
+
+        // Add event listener to close dialog button
+        closeDialogBtn.addEventListener('click', () => {
+            // Close the dialog
+            myDialog.close();
+            window.location.href = "{% url 'goals:goal_home' %}";
+        });
+
+        // Open the dialog when the page is loaded
+        window.onload = function() {
+            myDialog.showModal();
+        };
+    </script>
+</body>
+</html>
