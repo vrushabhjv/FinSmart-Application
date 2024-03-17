@@ -66,7 +66,7 @@ def view_transaction(request, transaction_id):
     context = {'transaction': transaction}
     
     # Render the template
-    return render(request, 'transaction_detail.html', context)
+    return render(request, 'transactions/transaction_detail.html', context)
 
     # Handle form submission to create a new transaction
 def add_transaction(request):
@@ -104,8 +104,8 @@ def add_transaction(request):
         user = request.user
 
         category = TransactionCategory.objects.get(pk=category_id)
+        
         # Create a new transaction object and save it to the database
-        print(category)
         transaction = Transaction(date=date, description=description, amount=amount, category=category, type=type, user=user)
         transaction.save()
         messages.success(request, f'Transaction added successfully')
