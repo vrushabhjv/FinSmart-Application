@@ -67,8 +67,7 @@ def view_transaction(request, transaction_id):
     
     # Render the template
     return render(request, 'transaction_detail.html', context)
-
-    # Handle form submission to create a new transaction
+    
 def add_transaction(request):
     # Handle form submission to create a new transaction
     if request.method == 'POST':

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from goals.models import Goal
 
 # Create your models here.
 class TransactionCategory(models.Model):
@@ -19,7 +20,6 @@ class Transaction(models.Model):
     category = models.ForeignKey(TransactionCategory, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     type = models.BooleanField(default=True) # True for income, False for expense
-    
     class Meta:
         verbose_name_plural = 'Transactions'
         

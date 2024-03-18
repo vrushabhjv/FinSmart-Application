@@ -56,4 +56,13 @@ def view_goal(request, goal_id):
     return render(request, 'goal_detail.html', context)
 
 
+def delete_goal(request, goal_id):
+    goal = get_object_or_404(Goal, pk=goal_id)
+    try:
+        goal.delete()
+        messages.success(request, 'Goal deleted successfully.')
+    except Exception as e:
+        messages.error(request, f'Error deleting goal: {e}')
+    return redirect('goals:goal_home')
+
 # Create your views here.
