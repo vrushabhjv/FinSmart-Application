@@ -52,7 +52,12 @@
         </div>
         <div class="form-row">
             <div class="input-data">
-                <input type="text" name="goal_name">
+                <select name="goal_name">
+                    <option value="" disabled selected hidden>Choose Goal</option>
+                    {% for goal in goals %}
+                        <option value="{{ goal.name }}">{{ goal.name }}</option>
+                    {% endfor %}
+                </select>
                 <div class="underline"></div>
                 <label for="">Goal Name (Optional)</label>
             </div>

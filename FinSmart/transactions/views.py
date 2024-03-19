@@ -8,6 +8,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from goals.models import Goal
 from decimal import Decimal
+from .utils import get_transaction
 
 # Create your views here.
 def transaction_home(request):
@@ -28,7 +29,7 @@ def transaction_home(request):
     
     return render(request, 'transactions/transactions.html',context)
 
-def view_transaction(request, transaction_id):
+''' OLD def view_transaction(request, transaction_id):
     transaction = get_object_or_404(Transaction, pk=transaction_id)
     
     # Pass the transaction details to the template
@@ -38,7 +39,18 @@ def view_transaction(request, transaction_id):
     return render(request, 'transactions/transaction_detail.html', context)
 
     # Handle form submission to create a new transaction
-    #return render(request, 'transaction_detail.html', context)
+    #return render(request, 'transaction_detail.html', context)'''
+    
+def view_transaction(request, transaction_id):
+    # Use the stored procedure to fetch transaction data
+    transaction = get_transaction(transaction_id)
+    print("using stored procedure")
+    if transaction:
+        # Transaction found, render the detail view
+        return render(request, 'transactions/transaction_detail.html', {'transaction': transaction})
+    else:
+        # Transaction not found, return a 404 error
+        return render(request, '404.html', status=404)
     
 def add_transaction(request):
     if request.method == 'POST':
@@ -50,9 +62,11 @@ def add_transaction(request):
                 type = False
             
             categories = TransactionCategory.objects.all()
+            goals=Goal.objects.filter(user=request.user)
             context = {
                 'categories': categories,
                 'transaction_type':type,
+                'goals':goals,
             }
             return render(request, 'transactions/add_transaction.html', context)
         
@@ -88,9 +102,11 @@ def add_transaction(request):
         return redirect('transaction_home')
     else:
         categories = TransactionCategory.objects.all()
+        goals=Goal.objects.filter(user=request.user)
         context = {
             'categories': categories,
             'transaction_type':None,
+            'goals':goals,
         }
         return render(request, 'transactions/add_transaction.html', context)
 

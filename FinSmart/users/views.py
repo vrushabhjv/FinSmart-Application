@@ -4,6 +4,7 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.urls import reverse
 from transactions.models import Transaction
+from goals.models import Goal
 
 # Create your views here.
 
@@ -12,15 +13,16 @@ def home(request):
         print("User is authenticated")
         # Retrieve the latest 4 transactions for the current user
         latest_transactions = Transaction.objects.filter(user=request.user).order_by('-date')[:4]
-        
         # Now you have access to the latest 4 transactions related to the logged-in user
+        goals=Goal.objects.filter(user=request.user)[:4]
         
         context = {
             'latest_transactions': latest_transactions,
+            'goals':goals,
         }
         return render(request, 'home.html',context)
     else:
-        return render(request, 'home.html')
+        return render(request, 'index.html')
 
 def register(request):
     # print("Login")

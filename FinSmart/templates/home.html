@@ -34,7 +34,13 @@
                     <div class="card-content">
                         <span class="card-title">Upcoming Goals</span>
                         <!-- Placeholder for upcoming goals -->
-                        <p>No upcoming goals</p>
+                        {% if goals %}
+                            {% for goal in goals %}
+                                <li>{{ goal.name }} - Target: {{ goal.target_amount }} - Progress: ${{ goal.current_progress }} </li>
+                            {% endfor %}
+                        {% else %}
+                            <p>No upcoming goals</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
