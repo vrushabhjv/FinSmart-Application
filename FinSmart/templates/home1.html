@@ -33,6 +33,8 @@
                         <tr>
                             <th>Name</th>
                             <th>Target Amount</th>
+                            <th>Current Progress</th>
+                            <th>Completion Percentage</th>
                             <th>Target Date</th>
                             <th>Goal Category</th>
                             <th>Actions</th>
@@ -44,6 +46,17 @@
                             <tr>
                                 <td>{{ goal.name }}</td>
                                 <td>{{ goal.target_amount }}</td>
+                                <td>{{ goal.current_progress }}</td>
+                                <!--<td>{{ goal.completion_percentage|default:"N/A" }}</td>-->
+                                <td>
+                                    {% if goal.completion_percentage is not None %}
+                                        {{ goal.completion_percentage|floatformat:2 }}%
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </td>
+                                
+
                                 <td>{{ goal.target_date }}</td>
                                 <td>{{ goal.goal_category }}</td>
                                 <td>

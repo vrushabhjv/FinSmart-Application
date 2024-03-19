@@ -6,6 +6,8 @@ from django.urls import reverse
 from .models import Transaction, TransactionCategory
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
+from goals.models import Goal
+from decimal import Decimal
 
 # Create your views here.
 def transaction_home(request):
@@ -68,9 +70,19 @@ def add_transaction(request):
         user = request.user
 
         category = TransactionCategory.objects.get(pk=category_id)
-        
+        amount = Decimal(request.POST['amount']) 
         # Create a new transaction object and save it to the database
         transaction = Transaction(date=date, description=description, amount=amount, category=category, type=type, user=user)
+         # Handle goal name
+        goal_name = request.POST.get('goal_name')
+        if goal_name:
+            try:
+                goal = Goal.objects.get(name=goal_name, user=user)
+                goal.current_progress += transaction.amount
+                goal.save()
+                transaction.goal = goal
+            except Goal.DoesNotExist:
+                pass  # Handle case where the goal does not exist
         transaction.save()
         messages.success(request, f'Transaction added successfully')
         return redirect('transaction_home')

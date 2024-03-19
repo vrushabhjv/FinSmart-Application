@@ -15,6 +15,12 @@ def goal_home(request):
     # Query goals belonging to the current user
     goals = Goal.objects.filter(user=request.user)
 
+    for goal in goals:
+        if goal.target_amount != 0:
+            goal.completion_percentage = (goal.current_progress / goal.target_amount) * 100
+        else:
+            goal.completion_percentage = None
+
     # Pagination
     paginator = Paginator(goals, 10)  # Adjust the number of goals per page as needed
     page_number = request.GET.get('page')
