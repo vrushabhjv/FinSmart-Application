@@ -69,6 +69,6 @@ def delete_goal(request, goal_id):
         messages.success(request, 'Goal deleted successfully.')
     except Exception as e:
         messages.error(request, f'Error deleting goal: {e}')
-    return redirect('goals:goal_home')
+    return redirect('goal_home')
 
 # Create your views here.
