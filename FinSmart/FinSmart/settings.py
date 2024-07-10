@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-!u*$d_4)19picl$k1z0o^2*e5-1_jf4+a!-g6v@x23$aydyy44
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["FinSmart-env.eba-vng5q5kq.us-east-1.elasticbeanstalk.com"]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -38,9 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'users.apps.UsersConfig',
-    # 'transactions',
-    # 'goals',
+    'users.apps.UsersConfig',
+    'transactions',
+    'goals',
 ]
 
 MIDDLEWARE = [
@@ -77,20 +77,14 @@ WSGI_APPLICATION = 'FinSmart.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.mysql",
-#         "NAME": "FinSmart",
-#         "USER": "root",
-#         "PASSWORD": "Admin@12345",
-#         "HOST": "127.0.0.1",
-#         "PORT": "3306",
-#     }
-# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "FinSmart",
+        "USER": "root",
+        "PASSWORD": "Admin@12345",
+        "HOST": "127.0.0.1",
+        "PORT": "3306",
     }
 }
 
