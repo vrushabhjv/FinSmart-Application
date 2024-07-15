@@ -9,8 +9,10 @@ from django.shortcuts import render, get_object_or_404
 from goals.models import Goal
 from decimal import Decimal
 from .utils import get_transaction
+from django.contrib.auth.decorators import login_required  # Import login_required decorator
 
 # Create your views here.
+@login_required(login_url='login')
 def transaction_home(request):
     transactions = Transaction.objects.filter(user=request.user)
     
@@ -29,7 +31,8 @@ def transaction_home(request):
     
     return render(request, 'transactions/transactions.html',context)
 
-''' OLD def view_transaction(request, transaction_id):
+@login_required(login_url='login') 
+def view_transaction(request, transaction_id):
     transaction = get_object_or_404(Transaction, pk=transaction_id)
     
     # Pass the transaction details to the template
@@ -39,9 +42,8 @@ def transaction_home(request):
     return render(request, 'transactions/transaction_detail.html', context)
 
     # Handle form submission to create a new transaction
-    #return render(request, 'transaction_detail.html', context)'''
-    
-def view_transaction(request, transaction_id):
+
+'''def view_transaction(request, transaction_id):
     # Use the stored procedure to fetch transaction data
     transaction = get_transaction(transaction_id)
     print("using stored procedure")
@@ -50,8 +52,9 @@ def view_transaction(request, transaction_id):
         return render(request, 'transactions/transaction_detail.html', {'transaction': transaction})
     else:
         # Transaction not found, return a 404 error
-        return render(request, '404.html', status=404)
+        return render(request, '404.html', status=404)'''
     
+@login_required(login_url='login')
 def add_transaction(request):
     if request.method == 'POST':
         if request.POST.get('category') == None:
@@ -110,10 +113,12 @@ def add_transaction(request):
         }
         return render(request, 'transactions/add_transaction.html', context)
 
+@login_required(login_url='login')
 def update_transaction(request, transaction_id):
     # Handle form submission to update an existing transaction
     pass
 
+@login_required(login_url='login')
 def delete_transaction(request, transaction_id):
     try:
         transaction = Transaction.objects.get(id=transaction_id)

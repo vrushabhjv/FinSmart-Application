@@ -11,6 +11,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 
 
+@login_required(login_url='login')
 def goal_home(request):
     # Query goals belonging to the current user
     goals = Goal.objects.filter(user=request.user)
@@ -35,7 +36,7 @@ def goal_home(request):
 
     return render(request, 'home1.html' ,context)
 
-@login_required
+@login_required(login_url='login')
 def add_goal(request):
     if request.method == 'POST':
         form = GoalForm(request.POST)
@@ -44,12 +45,12 @@ def add_goal(request):
             goal.user = request.user
             goal.save()
             messages.success(request, f'A new goal is added successfully')
-            return redirect('home')
+            return redirect('goal_home')
     else:
         form = GoalForm()
     return render(request, 'add_goal.html', {'form': form})
 
-
+@login_required(login_url='login')
 def view_goal(request, goal_id):
     # Fetch the goal details from the database based on the goal_id
     # Assuming you have a method to retrieve the goal details, replace the placeholders with your actual implementation
@@ -61,7 +62,7 @@ def view_goal(request, goal_id):
     # Render the template
     return render(request, 'goal_detail.html', context)
 
-
+@login_required(login_url='login')
 def delete_goal(request, goal_id):
     goal = get_object_or_404(Goal, pk=goal_id)
     try:
