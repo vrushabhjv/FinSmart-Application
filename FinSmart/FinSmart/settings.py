@@ -30,7 +30,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['100.28.120.64', 'localhost']
+ALLOWED_HOSTS = ['100.28.120.64', 'ec2-100-28-120-64.compute-1.amazonaws.com']
 
 
 # Application definition
