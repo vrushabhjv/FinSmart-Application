@@ -2,6 +2,8 @@
 
 FinSmart is a powerful personal finance management web application designed to help users effectively manage their personal finances. With features for tracking income, expenses, budgets, and savings goals, FinSmart empowers users to take control of their financial health.
 
+**Live Deployed Link**: [FinSmart-Application](http://ec2-100-28-120-64.compute-1.amazonaws.com/) 
+
 ## Features
 
 - **Income and Expense Tracking**: Log your daily transactions effortlessly.
