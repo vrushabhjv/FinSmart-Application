@@ -61,7 +61,7 @@ FinSmart has been deployed on AWS using the following steps:
 For any queries or suggestions, feel free to reach out:
 
 - **Name**: Vrushabh J V
-- **GitHub**: [github.com/vrushabhjv](https://github.com/yourusername)
+- **GitHub**: [github.com/vrushabhjv](https://github.com/vrushabhjv)
 
 ---
 
